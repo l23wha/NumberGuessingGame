@@ -29,7 +29,7 @@ function play(numberOfAttempts,targetNumber,currentAttempts=1){
        
       if(currentAttempts>numberOfAttempts){
               console.log(`\nGame Over! You ran out of attempts. The target number was: ${targetNumber}`);
-        rl.close(); 
+           askPlayAgain();
         return;
       }
 
@@ -38,7 +38,7 @@ function play(numberOfAttempts,targetNumber,currentAttempts=1){
 
           if(userGuess===targetNumber){
                console.log(`\nCongratulations! You guessed the correct number in ${currentAttempts} attempts!`);
-            rl.close(); 
+             askPlayAgain();
           }else if(userGuess<targetNumber){
                console.log("Incorrect! The number is GREATER than "+userGuess);
                play(numberOfAttempts,targetNumber,currentAttempts+1);
@@ -73,6 +73,23 @@ function getDifficultyLevel() {
 
 
       
+}
+
+function askPlayAgain(){
+      rl.question('\Do you want to play another round? (yes/no) :',(answer)=>{
+           
+             const choice=answer.trim().toLocaleLowerCase();
+
+             if(choice==='yes' || choice==='y')
+             {
+                  console.log("\n=============================================");
+            console.log("Starting a new round!");
+            console.log("=============================================\n");
+             }else{
+                 console.log("\nThanks for playing! GoodBye! \n");
+                  rl.close();
+             }
+      });
 }
 
 
